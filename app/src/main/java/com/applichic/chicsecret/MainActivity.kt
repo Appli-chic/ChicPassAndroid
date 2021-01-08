@@ -1,17 +1,17 @@
 package com.applichic.chicsecret
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.applichic.chicsecret.ui.vaults.VaultsActivity
 
 class MainActivity : AppCompatActivity() {
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val textView = findViewById<TextView>(R.id.test)
-        textView.text = RustGreetings().greeting("Guillaume")
+        intent = Intent(this, VaultsActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
