@@ -1,13 +1,19 @@
 package com.applichic.chicsecret.ui.vaults
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.applichic.chicsecret.R
+import com.applichic.chicsecret.database.AppDatabase.Companion.db
+import com.applichic.chicsecret.database.models.Vault
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import java.lang.Exception
+import java.util.*
+
 
 class NewVaultActivity : AppCompatActivity() {
     private lateinit var nameTextField: TextInputEditText
@@ -29,7 +35,7 @@ class NewVaultActivity : AppCompatActivity() {
         verifyPasswordTextField = findViewById(R.id.new_vault_verify_password_input)
         verifyPasswordTextFieldLayout = findViewById(R.id.new_vault_verify_password_input_layout)
         val saveButton = findViewById<Button>(R.id.new_vault_save_button)
-        
+
         // Listeners
         saveButton.setOnClickListener { save() }
 
@@ -81,16 +87,26 @@ class NewVaultActivity : AppCompatActivity() {
         if (verifyPasswordTextField.text == null ||
             verifyPasswordTextField.text!!.toString() != passwordTextField.text.toString()
         ) {
-            verifyPasswordTextFieldLayout.error = getString(R.string.new_vault_error_password_not_identical)
+            verifyPasswordTextFieldLayout.error =
+                getString(R.string.new_vault_error_password_not_identical)
         }
 
         // Encrypt the signature
 
 
-        // Save the vault in the local database
+        // Save the vault in the local database\
+        Thread {
+            val vault = Vault(
+                UUID.randomUUID().toString(), nameTextField.text.toString(),
+                "", Calendar.getInstance(), Calendar.getInstance(), null
+            )
 
+            val vaultDao = db?.vaultDao()
+            vaultDao?.insert(vault)
 
-        // Send back the information to the VaultsActivity
-
+            runOnUiThread {
+                finish()
+            }
+        }.start()
     }
 }

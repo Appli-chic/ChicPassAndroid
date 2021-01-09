@@ -2,10 +2,12 @@ package com.applichic.chicsecret.ui.vaults
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.applichic.chicsecret.R
+import com.applichic.chicsecret.database.AppDatabase
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
@@ -21,6 +23,14 @@ class VaultsActivity : AppCompatActivity() {
         // Bind the toolbar from the xml
         setSupportActionBar(findViewById(R.id.vaults_toolbar))
         supportActionBar?.title = getString(R.string.vaults)
+
+        Thread {
+            val vaultDao = AppDatabase.db?.vaultDao()
+            val vaults = vaultDao?.getAll()
+
+            runOnUiThread {
+            }
+        }.start()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
