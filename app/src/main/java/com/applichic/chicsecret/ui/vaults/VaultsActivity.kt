@@ -1,10 +1,15 @@
 package com.applichic.chicsecret.ui.vaults
 
 import android.content.Intent
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.applichic.chicsecret.R
@@ -37,6 +42,8 @@ class VaultsActivity : AppCompatActivity() {
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = vaultAdapter
 
+
+        manageListSwipe()
         loadVaults()
     }
 
@@ -62,6 +69,66 @@ class VaultsActivity : AppCompatActivity() {
     private fun goToNewVaultActivity() {
         intent = Intent(this, NewVaultActivity::class.java)
         startActivity(intent)
+    }
+
+    /**
+     * Manage the swipe on each element of the list.
+     * Displays a red background under the swipe to delete an element.
+     */
+    private fun manageListSwipe() {
+        val simpleItemTouchCallback: ItemTouchHelper.SimpleCallback = object :
+            ItemTouchHelper.SimpleCallback(
+                0,
+                ItemTouchHelper.LEFT
+            ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
+                val position = viewHolder.adapterPosition
+                vaults.removeAt(position)
+                vaultAdapter.notifyDataSetChanged()
+            }
+
+            override fun onChildDraw(
+                c: Canvas,
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                dX: Float,
+                dY: Float,
+                actionState: Int,
+                isCurrentlyActive: Boolean
+            ) {
+                super.onChildDraw(
+                    c,
+                    recyclerView,
+                    viewHolder,
+                    dX,
+                    dY,
+                    actionState,
+                    isCurrentlyActive
+                )
+
+                // Displays background red during the delete swipe
+                val itemView: View = viewHolder.itemView
+                val backgroundCornerOffset = 20
+
+                val background = ColorDrawable(Color.RED)
+                background.setBounds(
+                    itemView.right + dX.toInt() - backgroundCornerOffset,
+                    itemView.top, itemView.right, itemView.bottom
+                )
+                background.draw(c)
+            }
+        }
+
+        val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

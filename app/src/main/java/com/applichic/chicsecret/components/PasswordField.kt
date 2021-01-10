@@ -6,15 +6,15 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.ProgressBar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import com.applichic.chicsecret.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 
-class PasswordField : LinearLayout {
+class PasswordField : ConstraintLayout {
     private lateinit var passwordTextField: TextInputEditText
     private lateinit var passwordTextFieldLayout: TextInputLayout
     private lateinit var progressBar: ProgressBar

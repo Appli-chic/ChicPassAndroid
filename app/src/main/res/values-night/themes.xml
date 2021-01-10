@@ -1,7 +1,7 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Theme.ChicSecret" parent="AppTheme">
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/background</item>
         <item name="colorOnSecondary">@color/white</item>
     </style>
 </resources>

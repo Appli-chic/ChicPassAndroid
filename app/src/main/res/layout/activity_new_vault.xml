@@ -42,7 +42,7 @@
                 android:autofillHints="name"
                 android:ems="10"
                 android:hint="@string/new_vault_name"
-                android:inputType="textPersonName" />
+                android:inputType="textCapSentences" />
 
 
         </com.google.android.material.textfield.TextInputLayout>

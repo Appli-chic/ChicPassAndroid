@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.applichic.chicsecret.R
 import com.applichic.chicsecret.database.models.Vault
 
+
 class VaultAdapter(private var vaults: ArrayList<Vault>) :
     RecyclerView.Adapter<VaultAdapter.ViewHolder>() {
 
