@@ -1,7 +1,6 @@
 package com.applichic.chicsecret.components
 
 import android.content.Context
-import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,7 +9,6 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.widget.addTextChangedListener
 import com.applichic.chicsecret.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
