@@ -15,4 +15,5 @@
     <string name="new_vault_error_name_empty">The name must not be empty</string>
     <string name="new_vault_error_password_too_small">The password must be at least 6 characters</string>
     <string name="new_vault_error_password_not_identical">The passwords must be the same</string>
+    <string name="item_vault_icon_description">Vault\'s lock</string>
 </resources>
