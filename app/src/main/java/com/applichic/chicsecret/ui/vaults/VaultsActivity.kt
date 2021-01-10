@@ -22,7 +22,6 @@ class VaultsActivity : AppCompatActivity() {
 
         // Bind the toolbar from the xml
         setSupportActionBar(findViewById(R.id.vaults_toolbar))
-        supportActionBar?.title = getString(R.string.vaults)
 
         Thread {
             val vaultDao = AppDatabase.db?.vaultDao()

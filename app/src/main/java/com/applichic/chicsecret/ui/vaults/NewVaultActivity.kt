@@ -7,6 +7,7 @@ import android.view.MenuItem
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.applichic.chicsecret.R
+import com.applichic.chicsecret.components.PasswordField
 import com.applichic.chicsecret.database.AppDatabase.Companion.db
 import com.applichic.chicsecret.database.models.Vault
 import com.google.android.material.textfield.TextInputEditText
@@ -18,8 +19,7 @@ import java.util.*
 class NewVaultActivity : AppCompatActivity() {
     private lateinit var nameTextField: TextInputEditText
     private lateinit var nameTextFieldLayout: TextInputLayout
-    private lateinit var passwordTextField: TextInputEditText
-    private lateinit var passwordTextFieldLayout: TextInputLayout
+    private lateinit var passwordTextField: PasswordField
     private lateinit var verifyPasswordTextField: TextInputEditText
     private lateinit var verifyPasswordTextFieldLayout: TextInputLayout
 
@@ -31,7 +31,6 @@ class NewVaultActivity : AppCompatActivity() {
         nameTextField = findViewById(R.id.new_vault_name_input)
         nameTextFieldLayout = findViewById(R.id.new_vault_name_input_layout)
         passwordTextField = findViewById(R.id.new_vault_password_input)
-        passwordTextFieldLayout = findViewById(R.id.new_vault_password_input_layout)
         verifyPasswordTextField = findViewById(R.id.new_vault_verify_password_input)
         verifyPasswordTextFieldLayout = findViewById(R.id.new_vault_verify_password_input_layout)
         val saveButton = findViewById<Button>(R.id.new_vault_save_button)
@@ -42,7 +41,6 @@ class NewVaultActivity : AppCompatActivity() {
         // Bind the toolbar from the xml
         setSupportActionBar(findViewById(R.id.new_vault_toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = getString(R.string.new_vault)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -70,43 +68,56 @@ class NewVaultActivity : AppCompatActivity() {
      * and save the vault in the local database.
      */
     private fun save() {
+        var hasErrors = false
+
         // Error: the name must be defined
         if (nameTextField.text == null || nameTextField.text!!.isBlank()) {
             nameTextFieldLayout.error = getString(R.string.new_vault_error_name_empty)
+            hasErrors = true
+        } else {
+            nameTextFieldLayout.error = null
         }
 
         // Error: the password must be defined and have more than 6 characters
-        if (passwordTextField.text == null ||
-            passwordTextField.text!!.isBlank() ||
-            passwordTextField.text!!.length < 6
+        if (passwordTextField.getText() == null ||
+            passwordTextField.getText()!!.isBlank() ||
+            passwordTextField.getText()!!.length < 6
         ) {
-            passwordTextFieldLayout.error = getString(R.string.new_vault_error_password_too_small)
+            passwordTextField.setError(getString(R.string.new_vault_error_password_too_small))
+            hasErrors = true
+        } else {
+            passwordTextField.setError(null)
         }
 
         // Error: both passwords must be the same
         if (verifyPasswordTextField.text == null ||
-            verifyPasswordTextField.text!!.toString() != passwordTextField.text.toString()
+            verifyPasswordTextField.text!!.toString() != passwordTextField.getText().toString()
         ) {
             verifyPasswordTextFieldLayout.error =
                 getString(R.string.new_vault_error_password_not_identical)
+            hasErrors = true
+        } else {
+            verifyPasswordTextFieldLayout.error = null
         }
 
         // Encrypt the signature
 
 
-        // Save the vault in the local database\
-        Thread {
-            val vault = Vault(
-                UUID.randomUUID().toString(), nameTextField.text.toString(),
-                "", Calendar.getInstance(), Calendar.getInstance(), null
-            )
+        // Save the vault in the local database
+        if (!hasErrors) {
+            Thread {
+                val vault = Vault(
+                    UUID.randomUUID().toString(), nameTextField.text.toString(),
+                    "", Calendar.getInstance(), Calendar.getInstance(), null
+                )
 
-            val vaultDao = db?.vaultDao()
-            vaultDao?.insert(vault)
+                val vaultDao = db?.vaultDao()
+                vaultDao?.insert(vault)
 
-            runOnUiThread {
-                finish()
-            }
-        }.start()
+                runOnUiThread {
+                    finish()
+                }
+            }.start()
+        }
     }
 }

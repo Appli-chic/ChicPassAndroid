@@ -17,6 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            android:theme="@style/AppToolbar"
+            app:title="@string/new_vault"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -41,31 +43,22 @@
                 android:ems="10"
                 android:hint="@string/new_vault_name"
                 android:inputType="textPersonName" />
+
+
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/new_vault_password_input_layout"
-            style="@style/TextFieldFill"
+        <com.applichic.chicsecret.components.PasswordField
+            android:id="@+id/new_vault_password_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            app:errorIconDrawable="@null"
-            app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/new_vault_name_input_layout">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/new_vault_password_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/new_vault_password"
-                android:importantForAutofill="no"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
+        </com.applichic.chicsecret.components.PasswordField>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/new_vault_verify_password_input_layout"
@@ -79,7 +72,7 @@
             app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/new_vault_password_input_layout">
+            app:layout_constraintTop_toBottomOf="@+id/new_vault_password_input">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/new_vault_verify_password_input"
