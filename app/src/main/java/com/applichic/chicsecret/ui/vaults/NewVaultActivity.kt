@@ -1,7 +1,7 @@
 package com.applichic.chicsecret.ui.vaults
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
@@ -12,9 +12,9 @@ import com.applichic.chicsecret.database.AppDatabase.Companion.db
 import com.applichic.chicsecret.database.models.Vault
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import java.lang.Exception
 import java.util.*
 
+const val NEW_VAULT_RESULT_INTENT = "new_vault"
 
 class NewVaultActivity : AppCompatActivity() {
     private lateinit var nameTextField: TextInputEditText
@@ -115,6 +115,9 @@ class NewVaultActivity : AppCompatActivity() {
                 vaultDao?.insert(vault)
 
                 runOnUiThread {
+                    val returnIntent = Intent()
+                    returnIntent.putExtra(NEW_VAULT_RESULT_INTENT, vault)
+                    setResult(RESULT_OK, returnIntent)
                     finish()
                 }
             }.start()

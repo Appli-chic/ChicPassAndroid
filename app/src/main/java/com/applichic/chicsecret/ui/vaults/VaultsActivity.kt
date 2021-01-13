@@ -17,6 +17,7 @@ import com.applichic.chicsecret.database.AppDatabase
 import com.applichic.chicsecret.database.models.Vault
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
+const val NEW_VAULT_ACTIVITY_RESULT = 0
 
 class VaultsActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -41,7 +42,6 @@ class VaultsActivity : AppCompatActivity() {
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = vaultAdapter
-
 
         manageListSwipe()
         loadVaults()
@@ -68,7 +68,7 @@ class VaultsActivity : AppCompatActivity() {
      */
     private fun goToNewVaultActivity() {
         intent = Intent(this, NewVaultActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent, NEW_VAULT_ACTIVITY_RESULT)
     }
 
     /**
@@ -144,6 +144,21 @@ class VaultsActivity : AppCompatActivity() {
         }
         else -> {
             super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == NEW_VAULT_ACTIVITY_RESULT && resultCode == RESULT_OK) {
+            // We add the freshly created vault to the list
+            val vault = data?.extras?.get(NEW_VAULT_RESULT_INTENT) as Vault?
+
+            if (vault != null) {
+                vaults.add(vault)
+                vaultAdapter.setVaults(vaults)
+                vaultAdapter.notifyDataSetChanged()
+            }
         }
     }
 }
