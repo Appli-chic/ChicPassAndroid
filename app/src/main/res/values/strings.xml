@@ -1,19 +1,23 @@
 <resources>
     <string name="app_name">Chic Secret</string>
 
-    <!-- System-->
+    <!-- General -->
     <string name="save">Save</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="verify_password">Verify Password</string>
+    <string name="unlock">Unlock</string>
+    <string name="error">Error</string>
+    <string name="wrong_password">Wrong password</string>
 
     <!-- Vault -->
     <string name="vaults">Vaults</string>
     <string name="new_vault">New Vault</string>
     <string name="add_vault">Adding a vault</string>
-    <string name="new_vault_name">Name</string>
-    <string name="new_vault_password">Password</string>
-    <string name="new_vault_verify_password">Verify Password</string>
     <string name="new_vault_explanation_master_password">This password is very important, it will be used to encrypt all the passwords you will store in this vault. Please be sure to keep in mind this password. If you lose it, it will be impossible for us to retrieve your passwords in this vault.</string>
     <string name="new_vault_error_name_empty">The name must not be empty</string>
     <string name="new_vault_error_password_too_small">The password must be at least 6 characters</string>
     <string name="new_vault_error_password_not_identical">The passwords must be the same</string>
     <string name="item_vault_icon_description">Vault\'s lock</string>
+    <string name="unlock_vault">Unlock Vault</string>
 </resources>

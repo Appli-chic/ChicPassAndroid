@@ -1,15 +1,18 @@
 package com.applichic.chicsecret.ui.vaults
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.applichic.chicsecret.R
 import com.applichic.chicsecret.database.models.Vault
 
 
-class VaultAdapter(private var vaults: ArrayList<Vault>) :
+class VaultAdapter(private val context: Context, private var vaults: ArrayList<Vault>) :
     RecyclerView.Adapter<VaultAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,6 +25,13 @@ class VaultAdapter(private var vaults: ArrayList<Vault>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val vault = vaults[position]
         holder.nameTextView.text = vault.name
+
+        // Go to the page to unlock the password
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, UnlockVaultActivity::class.java)
+            intent.putExtra(vaultToUnlockKey, vault)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

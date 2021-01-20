@@ -10,6 +10,8 @@ import com.applichic.chicsecret.R
 import com.applichic.chicsecret.components.PasswordField
 import com.applichic.chicsecret.database.AppDatabase.Companion.db
 import com.applichic.chicsecret.database.models.Vault
+import com.applichic.chicsecret.utils.Security
+import com.applichic.chicsecret.utils.signature
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.util.*
@@ -100,15 +102,18 @@ class NewVaultActivity : AppCompatActivity() {
             verifyPasswordTextFieldLayout.error = null
         }
 
-        // Encrypt the signature
-
-
         // Save the vault in the local database
         if (!hasErrors) {
             Thread {
+                // Encrypt the signature
+                val encryptedSignature = Security.encrypt(
+                    passwordTextField.getText().toString(),
+                    signature
+                )
+
                 val vault = Vault(
                     UUID.randomUUID().toString(), nameTextField.text.toString(),
-                    "", Calendar.getInstance(), Calendar.getInstance(), null
+                    encryptedSignature, Calendar.getInstance(), Calendar.getInstance(), null
                 )
 
                 val vaultDao = db?.vaultDao()

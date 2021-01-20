@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.applichic.chicsecret.R
 import com.applichic.chicsecret.database.AppDatabase
 import com.applichic.chicsecret.database.models.Vault
+import com.applichic.chicsecret.utils.Security
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 const val NEW_VAULT_ACTIVITY_RESULT = 0
@@ -36,7 +38,7 @@ class VaultsActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.vaults_toolbar))
 
         // Bind the recycler view
-        vaultAdapter = VaultAdapter(vaults)
+        vaultAdapter = VaultAdapter(this, vaults)
         recyclerView = findViewById(R.id.vaults_recycler_view)
         val linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -116,11 +118,10 @@ class VaultsActivity : AppCompatActivity() {
 
                 // Displays background red during the delete swipe
                 val itemView: View = viewHolder.itemView
-                val backgroundCornerOffset = 20
 
                 val background = ColorDrawable(Color.RED)
                 background.setBounds(
-                    itemView.right + dX.toInt() - backgroundCornerOffset,
+                    itemView.right + dX.toInt(),
                     itemView.top, itemView.right, itemView.bottom
                 )
                 background.draw(c)

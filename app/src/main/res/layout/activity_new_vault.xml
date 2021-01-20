@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="name"
                 android:ems="10"
-                android:hint="@string/new_vault_name"
+                android:hint="@string/name"
                 android:inputType="textCapSentences" />
 
 
@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/new_vault_verify_password"
+                android:hint="@string/verify_password"
                 android:importantForAutofill="no"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
