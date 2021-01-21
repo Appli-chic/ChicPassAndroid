@@ -157,9 +157,14 @@ class VaultsActivity : AppCompatActivity() {
                 val vault = data?.extras?.get(NEW_VAULT_RESULT_INTENT) as Vault?
 
                 if (vault != null) {
+                    // Reload the data list
                     vaults.add(vault)
                     vaultAdapter.setVaults(vaults)
                     vaultAdapter.notifyDataSetChanged()
+
+                    // Start the home activity
+                    intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
                 }
             } else if (requestCode == UNLOCK_ACTIVITY_RESULT) {
                 intent = Intent(this, HomeActivity::class.java)

@@ -11,6 +11,8 @@ import com.applichic.chicsecret.R
 import com.applichic.chicsecret.database.models.Vault
 import com.applichic.chicsecret.utils.Security
 import com.applichic.chicsecret.utils.SIGNATURE
+import com.applichic.chicsecret.utils.currentPassword
+import com.applichic.chicsecret.utils.currentVault
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -95,6 +97,8 @@ class UnlockVaultActivity : AppCompatActivity() {
 
                 if (signatureDecrypted == SIGNATURE) {
                     // The password is correct
+                    currentVault = vault
+                    currentPassword = passwordTextField.text.toString()
                     setResult(RESULT_OK, null)
                     finish()
                 } else {

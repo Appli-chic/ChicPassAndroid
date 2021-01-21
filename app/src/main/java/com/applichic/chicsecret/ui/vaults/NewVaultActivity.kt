@@ -12,6 +12,8 @@ import com.applichic.chicsecret.database.AppDatabase.Companion.db
 import com.applichic.chicsecret.database.models.Vault
 import com.applichic.chicsecret.utils.Security
 import com.applichic.chicsecret.utils.SIGNATURE
+import com.applichic.chicsecret.utils.currentPassword
+import com.applichic.chicsecret.utils.currentVault
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.util.*
@@ -120,6 +122,8 @@ class NewVaultActivity : AppCompatActivity() {
                 vaultDao?.insert(vault)
 
                 runOnUiThread {
+                    currentVault = vault
+                    currentPassword = passwordTextField.getText().toString()
                     val returnIntent = Intent()
                     returnIntent.putExtra(NEW_VAULT_RESULT_INTENT, vault)
                     setResult(RESULT_OK, returnIntent)
