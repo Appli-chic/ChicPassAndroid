@@ -1,5 +1,6 @@
 package com.applichic.chicsecret.ui.vaults
 
+import android.content.Intent
 import androidx.appcompat.app.AlertDialog
 import android.os.Bundle
 import android.view.Menu
@@ -9,12 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.applichic.chicsecret.R
 import com.applichic.chicsecret.database.models.Vault
 import com.applichic.chicsecret.utils.Security
-import com.applichic.chicsecret.utils.signature
+import com.applichic.chicsecret.utils.SIGNATURE
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
-
-const val vaultToUnlockKey = "vaultToUnlockKey"
+const val VAULT_TO_UNLOCK_KEY = "vaultToUnlockKey"
 
 class UnlockVaultActivity : AppCompatActivity() {
     private lateinit var passwordTextField: TextInputEditText
@@ -24,7 +24,7 @@ class UnlockVaultActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState.putParcelable(vaultToUnlockKey, vault)
+        outState.putParcelable(VAULT_TO_UNLOCK_KEY, vault)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,10 +39,10 @@ class UnlockVaultActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             val extras = intent.extras
             if (extras != null) {
-                vault = extras.getParcelable(vaultToUnlockKey)
+                vault = extras.getParcelable(VAULT_TO_UNLOCK_KEY)
             }
         } else {
-            vault = savedInstanceState.getParcelable(vaultToUnlockKey)
+            vault = savedInstanceState.getParcelable(VAULT_TO_UNLOCK_KEY)
         }
 
         // Listeners
@@ -93,8 +93,9 @@ class UnlockVaultActivity : AppCompatActivity() {
                 val signatureDecrypted =
                     Security.decrypt(passwordTextField.text.toString(), vault!!.signature)
 
-                if (signatureDecrypted == signature) {
+                if (signatureDecrypted == SIGNATURE) {
                     // The password is correct
+                    setResult(RESULT_OK, null)
                     finish()
                 } else {
                     // The password is wrong

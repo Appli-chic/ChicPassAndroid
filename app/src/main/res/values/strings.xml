@@ -20,4 +20,13 @@
     <string name="new_vault_error_password_not_identical">The passwords must be the same</string>
     <string name="item_vault_icon_description">Vault\'s lock</string>
     <string name="unlock_vault">Unlock Vault</string>
+
+    <!-- Entry -->
+
+    <!-- Category -->
+
+    <!-- Settings -->
+
+    <!-- Health -->
+
 </resources>

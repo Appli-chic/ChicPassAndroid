@@ -14,9 +14,9 @@ import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.PBEKeySpec
 import javax.crypto.spec.SecretKeySpec
 
-const val signature = "~ChicPass/signature"
-const val ivString = "RMZ#K<u'tjq26Y-i"
-const val saltString = "Xx2VzeJRr7R5sloGZQoPcNdhC803e97o"
+const val SIGNATURE = "~ChicPass/signature"
+const val IV = "RMZ#K<u'tjq26Y-i"
+const val SALT = "Xx2VzeJRr7R5sloGZQoPcNdhC803e97o"
 
 class Security {
     companion object {
@@ -33,14 +33,14 @@ class Security {
             val factory: SecretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
             val spec: KeySpec = PBEKeySpec(
                 keyString.toCharArray(),
-                saltString.toByteArray(StandardCharsets.UTF_8),
+                SALT.toByteArray(StandardCharsets.UTF_8),
                 4096,
                 256,
             )
             val tmp: SecretKey = factory.generateSecret(spec)
             val key: SecretKey = SecretKeySpec(tmp.encoded, "AES")
             val cipher = Cipher.getInstance("AES/CBC/PKCS7PADDING")
-            val ivSpec = IvParameterSpec(ivString.toByteArray(StandardCharsets.UTF_8))
+            val ivSpec = IvParameterSpec(IV.toByteArray(StandardCharsets.UTF_8))
             cipher.init(mode, key, ivSpec)
             return cipher
         }

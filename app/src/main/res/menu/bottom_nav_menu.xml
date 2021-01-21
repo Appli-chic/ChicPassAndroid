@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home_navigation_passwords"
+        android:icon="@drawable/ic_list"
+        android:title="Passwords" />
+
+    <item
+        android:id="@+id/home_navigation_categories"
+        android:icon="@drawable/ic_folder"
+        android:title="Categories" />
+
+    <item
+        android:id="@+id/placeholder"
+        android:title="" />
+
+    <item
+        android:id="@+id/home_navigation_health"
+        android:icon="@drawable/ic_favorite"
+        android:title="Health" />
+
+    <item
+        android:id="@+id/home_navigation_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="Settings" />
+
+</menu>

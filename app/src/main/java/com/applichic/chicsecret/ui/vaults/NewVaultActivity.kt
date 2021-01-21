@@ -11,7 +11,7 @@ import com.applichic.chicsecret.components.PasswordField
 import com.applichic.chicsecret.database.AppDatabase.Companion.db
 import com.applichic.chicsecret.database.models.Vault
 import com.applichic.chicsecret.utils.Security
-import com.applichic.chicsecret.utils.signature
+import com.applichic.chicsecret.utils.SIGNATURE
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.util.*
@@ -108,7 +108,7 @@ class NewVaultActivity : AppCompatActivity() {
                 // Encrypt the signature
                 val encryptedSignature = Security.encrypt(
                     passwordTextField.getText().toString(),
-                    signature
+                    SIGNATURE
                 )
 
                 val vault = Vault(

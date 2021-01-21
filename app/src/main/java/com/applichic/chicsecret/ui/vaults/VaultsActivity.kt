@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,10 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.applichic.chicsecret.R
 import com.applichic.chicsecret.database.AppDatabase
 import com.applichic.chicsecret.database.models.Vault
-import com.applichic.chicsecret.utils.Security
+import com.applichic.chicsecret.ui.HomeActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 const val NEW_VAULT_ACTIVITY_RESULT = 0
+const val UNLOCK_ACTIVITY_RESULT = 1
 
 class VaultsActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -151,14 +151,19 @@ class VaultsActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == NEW_VAULT_ACTIVITY_RESULT && resultCode == RESULT_OK) {
-            // We add the freshly created vault to the list
-            val vault = data?.extras?.get(NEW_VAULT_RESULT_INTENT) as Vault?
+        if (resultCode == RESULT_OK) {
+            if (requestCode == NEW_VAULT_ACTIVITY_RESULT) {
+                // We add the freshly created vault to the list
+                val vault = data?.extras?.get(NEW_VAULT_RESULT_INTENT) as Vault?
 
-            if (vault != null) {
-                vaults.add(vault)
-                vaultAdapter.setVaults(vaults)
-                vaultAdapter.notifyDataSetChanged()
+                if (vault != null) {
+                    vaults.add(vault)
+                    vaultAdapter.setVaults(vaults)
+                    vaultAdapter.notifyDataSetChanged()
+                }
+            } else if (requestCode == UNLOCK_ACTIVITY_RESULT) {
+                intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
             }
         }
     }
