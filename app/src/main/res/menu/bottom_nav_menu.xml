@@ -4,12 +4,12 @@
     <item
         android:id="@+id/home_navigation_passwords"
         android:icon="@drawable/ic_list"
-        android:title="Passwords" />
+        android:title="@string/passwords" />
 
     <item
         android:id="@+id/home_navigation_categories"
         android:icon="@drawable/ic_folder"
-        android:title="Categories" />
+        android:title="@string/categories" />
 
     <item
         android:id="@+id/placeholder"
@@ -18,11 +18,11 @@
     <item
         android:id="@+id/home_navigation_health"
         android:icon="@drawable/ic_favorite"
-        android:title="Health" />
+        android:title="@string/health" />
 
     <item
         android:id="@+id/home_navigation_settings"
         android:icon="@drawable/ic_settings"
-        android:title="Settings" />
+        android:title="@string/settings" />
 
 </menu>

@@ -22,11 +22,17 @@
     <string name="unlock_vault">Unlock Vault</string>
 
     <!-- Entry -->
+    <string name="passwords">Passwords</string>
+    <string name="add_entry">Add entry</string>
 
     <!-- Category -->
-
-    <!-- Settings -->
+    <string name="categories">Categories</string>
 
     <!-- Health -->
+    <string name="health">Health</string>
+
+    <!-- Settings -->
+    <string name="settings">Settings</string>
+
 
 </resources>
