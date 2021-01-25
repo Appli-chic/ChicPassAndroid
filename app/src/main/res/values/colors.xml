@@ -10,4 +10,10 @@
     <color name="orange">#ff9800</color>
     <color name="green">#8bc34a</color>
     <color name="deep_green">#4caf50</color>
+    <color name="blue">#0A84FF</color>
+    <color name="purple">#BF5AF2</color>
+    <color name="indigo">#5E5CE6</color>
+    <color name="teal">#64D2FF</color>
+    <color name="yellow">#FFD60A</color>
+    <color name="pink">#FF375F</color>
 </resources>

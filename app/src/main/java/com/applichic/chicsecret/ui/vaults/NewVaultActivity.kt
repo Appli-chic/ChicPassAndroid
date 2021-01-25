@@ -1,22 +1,26 @@
 package com.applichic.chicsecret.ui.vaults
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.MotionEvent
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.applichic.chicsecret.R
 import com.applichic.chicsecret.components.PasswordField
 import com.applichic.chicsecret.database.AppDatabase.Companion.db
 import com.applichic.chicsecret.database.models.Vault
-import com.applichic.chicsecret.utils.Security
 import com.applichic.chicsecret.utils.SIGNATURE
+import com.applichic.chicsecret.utils.Security
 import com.applichic.chicsecret.utils.currentPassword
 import com.applichic.chicsecret.utils.currentVault
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import java.util.*
+
 
 const val NEW_VAULT_RESULT_INTENT = "new_vault"
 
@@ -65,6 +69,15 @@ class NewVaultActivity : AppCompatActivity() {
         else -> {
             super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        if (currentFocus != null) {
+            val imm: InputMethodManager =
+                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+        }
+        return super.dispatchTouchEvent(ev)
     }
 
     /**
