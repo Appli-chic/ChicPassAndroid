@@ -5,6 +5,7 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.applichic.chicsecret.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class EntriesFragment : Fragment() {
@@ -14,6 +15,11 @@ class EntriesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_entries, container, false)
+
+        // Bind the xml
+        val addEntryFloatingButton =
+            rootView?.findViewById<FloatingActionButton>(R.id.entries_add_entry_button)
+        addEntryFloatingButton?.setOnClickListener { startNewEntryActivity() }
 
         // Bind the toolbar from the xml
         setHasOptionsMenu(true)

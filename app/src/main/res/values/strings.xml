@@ -28,6 +28,7 @@
     <!-- Category -->
     <string name="categories">Categories</string>
     <string name="add_category">Add category</string>
+    <string name="new_category">New Category</string>
 
     <!-- Health -->
     <string name="health">Health</string>
