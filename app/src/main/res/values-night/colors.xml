@@ -2,4 +2,5 @@
 <resources>
     <color name="background">#000000</color>
     <color name="secondaryBackground">#1C1C1E</color>
+    <color name="text">#FFFFFFFF</color>
 </resources>

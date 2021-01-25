@@ -65,8 +65,9 @@
                 <GridView
                     android:id="@+id/new_category_icon_grid"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="105dp"
                     android:nestedScrollingEnabled="false"
+                    android:scrollbars="none"
                     android:numColumns="6"
                     android:horizontalSpacing="0dp"
                     android:verticalSpacing="5dp"/>

@@ -5,7 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.LinearLayout
+import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.applichic.chicsecret.R
 
@@ -32,14 +33,26 @@ class IconAdapter(val context: Context, private var icons: List<String>) : BaseA
             v = inflater.inflate(R.layout.item_icon, parent, false)
         }
 
-        val backgroundView = v!!.findViewById<LinearLayout>(R.id.icon_background_color_view)
-        if(selectedIcon == position) {
+        val backgroundView = v!!.findViewById<ConstraintLayout>(R.id.icon_background_color_view)
+        val imageView = v.findViewById<ImageView>(R.id.icon_item_icon)
+        val drawable =
+            context.resources.getIdentifier(icons[position], "drawable", context.packageName)
+        imageView.setImageDrawable(ContextCompat.getDrawable(context, drawable))
+
+        if (selectedIcon == position) {
             backgroundView.setBackgroundColor(ContextCompat.getColor(context, R.color.blue))
+            imageView.setColorFilter(ContextCompat.getColor(context, R.color.white))
         } else {
-            backgroundView.setBackgroundColor(ContextCompat.getColor(context, R.color.secondaryBackground))
+            backgroundView.setBackgroundColor(
+                ContextCompat.getColor(
+                    context,
+                    R.color.secondaryBackground
+                )
+            )
+            imageView.setColorFilter(ContextCompat.getColor(context, R.color.text))
         }
 
-        return v!!
+        return v
     }
 
 }

@@ -9,6 +9,7 @@
     <string name="unlock">Unlock</string>
     <string name="error">Error</string>
     <string name="wrong_password">Wrong password</string>
+    <string name="icons">Icons</string>
 
     <!-- Vault -->
     <string name="vaults">Vaults</string>
