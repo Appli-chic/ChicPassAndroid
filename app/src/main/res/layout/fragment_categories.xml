@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.categories.CategoriesFragment">
+    tools:context=".ui.categories.CategoriesFragment"
+    android:background="@color/background">
 
 
     <androidx.appcompat.widget.Toolbar

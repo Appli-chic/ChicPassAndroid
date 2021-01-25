@@ -1,7 +1,12 @@
 <resources>
     <!-- Base application theme. -->
     <style name="Theme.ChicSecret" parent="AppTheme">
-        <item name="colorOnPrimary">@color/background</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="AppToolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:backgroundTint">@color/background</item>
     </style>
 </resources>
