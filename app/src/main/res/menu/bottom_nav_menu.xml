@@ -12,10 +12,6 @@
         android:title="@string/categories" />
 
     <item
-        android:id="@+id/placeholder"
-        android:title="" />
-
-    <item
         android:id="@+id/home_navigation_health"
         android:icon="@drawable/ic_favorite"
         android:title="@string/health" />

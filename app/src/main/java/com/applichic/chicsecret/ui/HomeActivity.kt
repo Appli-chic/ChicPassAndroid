@@ -17,12 +17,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         val bottomNavBar: BottomNavigationView = findViewById(R.id.home_bottom_navbar)
-        val addEntryFloatingButton: FloatingActionButton =
-            findViewById(R.id.home_add_floating_button)
 
-        addEntryFloatingButton.setOnClickListener { }
-
-        bottomNavBar.menu.getItem(2).isEnabled = false
         bottomNavBar.setOnNavigationItemSelectedListener { item ->
             var selectedFragment: Fragment
 
