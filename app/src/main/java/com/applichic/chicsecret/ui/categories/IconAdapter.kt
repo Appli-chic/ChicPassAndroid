@@ -14,6 +14,7 @@ import com.applichic.chicsecret.R
 class IconAdapter(val context: Context, private var icons: List<String>) : BaseAdapter() {
     private var inflater: LayoutInflater = LayoutInflater.from(context)
     var selectedIcon = 0
+    var selectedColor = ContextCompat.getColor(context, R.color.blue)
 
     override fun getCount(): Int {
         return icons.size
@@ -40,7 +41,7 @@ class IconAdapter(val context: Context, private var icons: List<String>) : BaseA
         imageView.setImageDrawable(ContextCompat.getDrawable(context, drawable))
 
         if (selectedIcon == position) {
-            backgroundView.setBackgroundColor(ContextCompat.getColor(context, R.color.blue))
+            backgroundView.setBackgroundColor(selectedColor)
             imageView.setColorFilter(ContextCompat.getColor(context, R.color.white))
         } else {
             backgroundView.setBackgroundColor(

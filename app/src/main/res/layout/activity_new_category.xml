@@ -51,27 +51,97 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/new_category_icons"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:text="@string/icons"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/new_category_name_input_layout" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:background="@color/secondaryBackground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/new_category_name_input_layout">
+                app:layout_constraintTop_toBottomOf="@id/new_category_icons">
 
                 <GridView
                     android:id="@+id/new_category_icon_grid"
                     android:layout_width="match_parent"
                     android:layout_height="105dp"
-                    android:nestedScrollingEnabled="false"
-                    android:scrollbars="none"
-                    android:numColumns="6"
                     android:horizontalSpacing="0dp"
-                    android:verticalSpacing="5dp"/>
+                    android:nestedScrollingEnabled="false"
+                    android:numColumns="6"
+                    android:scrollbars="none"
+                    android:verticalSpacing="5dp" />
             </LinearLayout>
+
+            <Button
+                android:id="@+id/new_category_more_icons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/more_icons"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+            <TextView
+                android:id="@+id/new_category_colors"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/colors"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/new_category_more_icons" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/secondaryBackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/new_category_colors">
+
+                <GridView
+                    android:id="@+id/new_category_color_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:horizontalSpacing="0dp"
+                    android:nestedScrollingEnabled="false"
+                    android:numColumns="6"
+                    android:scrollbars="none"
+                    android:verticalSpacing="5dp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/new_category_more_colors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/more_colors"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

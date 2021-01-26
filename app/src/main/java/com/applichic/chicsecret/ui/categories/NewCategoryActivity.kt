@@ -6,17 +6,19 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MotionEvent
-import android.view.View
 import android.view.View.OnTouchListener
 import android.view.inputmethod.InputMethodManager
 import android.widget.GridView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.applichic.chicsecret.R
+import com.applichic.chicsecret.utils.colors
 import com.applichic.chicsecret.utils.icons
 
 
 class NewCategoryActivity : AppCompatActivity() {
-    private lateinit var adapter: IconAdapter
+    private lateinit var iconAdapter: IconAdapter
+    private lateinit var colorAdapter: ColorAdapter
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,21 +27,37 @@ class NewCategoryActivity : AppCompatActivity() {
 
         // Set the icons grid
         val iconGrid = findViewById<GridView>(R.id.new_category_icon_grid)
-        adapter = IconAdapter(this, icons)
-        iconGrid.adapter = adapter
+        iconAdapter = IconAdapter(this, icons)
+        iconGrid.adapter = iconAdapter
         iconGrid.setOnItemClickListener { _, _, position, _ ->
-            adapter.selectedIcon = position
-            adapter.notifyDataSetChanged()
+            iconAdapter.selectedIcon = position
+            iconAdapter.notifyDataSetChanged()
         }
 
         iconGrid.setOnTouchListener(OnTouchListener { _, event ->
-            if(event.action == MotionEvent.ACTION_MOVE) {
+            if (event.action == MotionEvent.ACTION_MOVE) {
                 return@OnTouchListener true
             }
             false
         })
 
         // Set the colors grid
+        val colorGrid = findViewById<GridView>(R.id.new_category_color_grid)
+        colorAdapter = ColorAdapter(this, colors)
+        colorGrid.adapter = colorAdapter
+        colorGrid.setOnItemClickListener { _, _, position, _ ->
+            colorAdapter.selectedColor = position
+            iconAdapter.selectedColor = ContextCompat.getColor(this, colors[position])
+            colorAdapter.notifyDataSetChanged()
+            iconAdapter.notifyDataSetChanged()
+        }
+
+        colorGrid.setOnTouchListener(OnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_MOVE) {
+                return@OnTouchListener true
+            }
+            false
+        })
 
         // Bind the toolbar from the xml
         setSupportActionBar(findViewById(R.id.new_category_toolbar))
