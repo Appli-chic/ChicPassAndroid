@@ -55,7 +55,10 @@ class VaultsActivity : AppCompatActivity() {
     private fun loadVaults() {
         Thread {
             val vaultDao = AppDatabase.db?.vaultDao()
-            vaults = vaultDao?.getAll() as ArrayList<Vault>
+            val vaultsFromDb = vaultDao?.getAll()
+            if (vaultsFromDb != null) {
+                vaults = vaultDao.getAll() as ArrayList<Vault>
+            }
 
             // Display the vaults
             runOnUiThread {
